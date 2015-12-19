@@ -5,6 +5,7 @@ app.controller('LoginCtrl', function ($scope, Auth, $state) {
 
     $scope.user = {};
     $scope.loginStatus = 'Log In';
+    $scope.registerStatus = 'Sign Up';
 
     $scope.login = function() {
 
@@ -18,8 +19,6 @@ app.controller('LoginCtrl', function ($scope, Auth, $state) {
               email: $scope.user.email,
               password: $scope.user.password
           }).then(function(authData) {
-            $scope.loginStatus = 'Logged In';
-            $scope.authData = authData;
             $state.go("dashboard");
           }).catch(function(error) {
             $scope.loginStatus = 'Log In';
@@ -29,4 +28,30 @@ app.controller('LoginCtrl', function ($scope, Auth, $state) {
 
     };
 
+    $scope.register = function() {
+
+      if (!$scope.user.email){
+        $scope.error = 'Invalid Email';
+      }else if (!$scope.user.password){
+        $scope.error = 'No password';
+      }else if ($scope.user.password != $scope.user.passwordRepeat){
+        $scope.error = 'Passwords don\'t match';
+      }else{
+        $scope.registerStatus = 'Registering...';
+        Auth.$createUser({
+            email: $scope.user.email,
+            password: $scope.user.password
+        }).then(function(userData) {
+          return Auth.$authWithPassword({
+            email: $scope.user.email,
+            password: $scope.user.password
+          });
+        }).then(function(authData) {
+          $state.go("dashboard");
+        }).catch(function(error) {
+          $scope.error = error;
+        });
+      }
+    };
+    
 });
