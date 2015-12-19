@@ -20,22 +20,28 @@ app.config(function ($stateProvider, $urlRouterProvider) {
           "currentAuth": ["Auth", "$state", function(Auth, $state) {
             return Auth.$waitForAuth().then(function(auth){
               if (auth){
-                $state.go("dashboard");
+                $state.go("auth.dashboard");
               }
             });
           }]
         }
     })
 
-    .state('dashboard', {
-      url: '/dashboard',
-      templateUrl: 'partials/dashboard.html',
-      controller: 'DashboardCtrl',
+    .state('auth', {
+      url: '/auth',
+      templateUrl: 'partials/auth.html',
+      controller: 'NavCtrl',
       resolve: {
         "currentAuth": ["Auth", function(Auth) {
           return Auth.$requireAuth();
         }]
       }
+    })
+
+    .state('auth.dashboard', {
+      url: '/dashboard',
+      templateUrl: 'partials/dashboard.html',
+      controller: 'DashboardCtrl'
     });
 
   $urlRouterProvider.otherwise('/login');

@@ -1,12 +1,6 @@
 'use strict';
 
-app.controller('DashboardCtrl', function ($scope, Auth, $state) {
+app.controller('DashboardCtrl', function ($scope) {
 
-  $scope.logout = function(){
-
-    Auth.$unauth();
-    $state.go("login");
-
-  }
 
 });

@@ -19,7 +19,7 @@ app.controller('LoginCtrl', function ($scope, Auth, $state) {
               email: $scope.user.email,
               password: $scope.user.password
           }).then(function(authData) {
-            $state.go("dashboard");
+            $state.go("auth.dashboard");
           }).catch(function(error) {
             $scope.loginStatus = 'Log In';
             $scope.error = error;
@@ -47,7 +47,7 @@ app.controller('LoginCtrl', function ($scope, Auth, $state) {
             password: $scope.user.password
           });
         }).then(function(authData) {
-          $state.go("dashboard");
+          $state.go("auth.dashboard");
         }).catch(function(error) {
           $scope.error = error;
         });
