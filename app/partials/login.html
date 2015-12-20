@@ -22,12 +22,12 @@
             </div>
 
             <div class="form-group">
-              <input type ='submit' class="btn btn-success" ng-click='login()' ng-hide="newMember" value='{{loginStatus}}'></input>
-              <input type ='submit' class="btn btn-success" ng-click='register()' ng-show="newMember" value='{{registerStatus}}'></input>
+              <input type ='submit' class="btn btn-success" ng-click='login()' ng-if="!newMember" value='{{loginStatus}}'></input>
+              <input type ='submit' class="btn btn-success" ng-click='register()' ng-if="newMember" value='{{registerStatus}}'></input>
             </div>
           </form>
           <p ng-hide="newMember"> Dont have an account? It's easy to <a href="#" ng-click='newMember = true;'> create one </a></p>
-          <p ng-show="newMember"> Already a member? Login <a href="#" ng-click='newMember = false;'> here </a></p>
+          <p ng-show="newMember"> Already a member? Login <a ng-click='newMember = false;'> here </a></p>
 
         </div>
       </div>

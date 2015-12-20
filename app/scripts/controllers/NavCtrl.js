@@ -1,10 +1,10 @@
 'use strict';
 
-app.controller('NavCtrl', function ($scope, Auth, $state) {
+app.controller('NavCtrl', function ($scope, AuthService, $state) {
 
   $scope.logout = function(){
 
-    Auth.$unauth();
+    AuthService.$unauth();
     $state.go("login");
 
   }

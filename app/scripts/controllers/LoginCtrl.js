@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('LoginCtrl', function ($scope, Auth, $state) {
+app.controller('LoginCtrl', function ($scope, $rootScope, AuthService, $state, $firebase, UserService) {
 
 
     $scope.user = {};
@@ -9,22 +9,22 @@ app.controller('LoginCtrl', function ($scope, Auth, $state) {
 
     $scope.login = function() {
 
-        if (!$scope.user.email){
-          $scope.error = 'Invalid Email';
-        }else if (!$scope.user.password){
-          $scope.error = 'No password';
-        }else{
-          $scope.loginStatus = 'Authorizing...';
-          Auth.$authWithPassword({
-              email: $scope.user.email,
-              password: $scope.user.password
-          }).then(function(authData) {
-            $state.go("auth.dashboard");
-          }).catch(function(error) {
-            $scope.loginStatus = 'Log In';
-            $scope.error = error;
-          });
-        }
+      if (!$scope.user.email){
+        $scope.error = 'Invalid Email';
+      }else if (!$scope.user.password){
+        $scope.error = 'No password';
+      }else{
+        $scope.loginStatus = 'Authorizing...';
+        AuthService.$authWithPassword({
+            email: $scope.user.email,
+            password: $scope.user.password
+        }).then(function(authData) {
+          $state.go("auth.dashboard");
+        }).catch(function(error) {
+          $scope.loginStatus = 'Log In';
+          $scope.error = error;
+        });
+      }
 
     };
 
@@ -38,11 +38,16 @@ app.controller('LoginCtrl', function ($scope, Auth, $state) {
         $scope.error = 'Passwords don\'t match';
       }else{
         $scope.registerStatus = 'Registering...';
-        Auth.$createUser({
+        AuthService.$createUser({
             email: $scope.user.email,
             password: $scope.user.password
         }).then(function(userData) {
-          return Auth.$authWithPassword({
+
+          $rootScope.currentUser = UserService.createUser(userData.uid);
+          $rootScope.currentUser.email = $scope.user.email;
+          $rootScope.currentUser.$save();
+
+          return AuthService.$authWithPassword({
             email: $scope.user.email,
             password: $scope.user.password
           });

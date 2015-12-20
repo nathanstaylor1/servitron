@@ -2,9 +2,11 @@
 
 var app = angular.module('servitron', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'firebase', 'ngResource', 'ui.router'])
 
-app.factory("Auth", ["$firebaseAuth",
-  function($firebaseAuth) {
-    var ref = new Firebase("https://servitron-dev.firebaseio.com");
+app.constant('firebaseRef', 'https://servitron-dev.firebaseio.com');
+
+app.factory("AuthService", ["$firebaseAuth", "firebaseRef",
+  function($firebaseAuth, firebaseRef) {
+    var ref = new Firebase(firebaseRef);
     return $firebaseAuth(ref);
   }
 ]);
@@ -15,27 +17,29 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('login', {
       url: '/login',
       templateUrl: 'partials/login.html',
-      controller: 'LoginCtrl',
-      resolve: {
-          "currentAuth": ["Auth", "$state", function(Auth, $state) {
-            return Auth.$waitForAuth().then(function(auth){
+      controller: 'LoginCtrl'
+      /*resolve: {
+          "currentAuth": ["AuthService", "$state", function(AuthService, $state) {
+            return AuthService.$waitForAuth().then(function(auth){
               if (auth){
                 $state.go("auth.dashboard");
+              } else {
+                $state.go("login");
               }
             });
           }]
-        }
+        }*/
     })
 
     .state('auth', {
       url: '/auth',
       templateUrl: 'partials/auth.html',
-      controller: 'NavCtrl',
-      resolve: {
-        "currentAuth": ["Auth", function(Auth) {
-          return Auth.$requireAuth();
+      controller: 'NavCtrl'
+/*      resolve: {
+        "currentAuth": ["AuthSerice", function(AuthService) {
+          return AuthService.$requireAuth();
         }]
-      }
+      }*/
     })
 
     .state('auth.dashboard', {
