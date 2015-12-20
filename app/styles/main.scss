@@ -4,8 +4,20 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 
 body > div {
 	padding-top: 80px;
+
+	padding-bottom: 10vh;
 }
 
 a {
 	cursor: pointer;
+}
+
+.spacer{
+	height:30px;
+	&.double{
+		height: 60px;
+	}
+	&.triple{
+		height: 90px;
+	}
 }

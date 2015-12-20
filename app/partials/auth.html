@@ -7,15 +7,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Servitron</a>
+      <a class="navbar-brand" ui-sref="auth.dashboard">Servitron</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li><a ui-sref="auth.dashboard">Home</a></li>
+        <li><a ui-sref="auth.search">Search</a></li>
+        <li><a ui-sref="auth.chat">Chat</a></li>
+        <li><a ui-sref="auth.edit-profile">Edit My Profile</a></li>
+        <li><a ui-sref="auth.edit-services">Edit My Services</a></li>
       </ul>
-	  <ul class="nav navbar-nav navbar-right">
-	  	<li><a ng-click='logout()'>Logout</a></li>
-	  </ul>
+  	  <ul class="nav navbar-nav navbar-right">
+  	  	<li><a ng-click='logout()'>Logout</a></li>
+  	  </ul>
     </div>
   </div>
 </nav>

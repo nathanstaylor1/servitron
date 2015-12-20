@@ -46,7 +46,37 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       url: '/dashboard',
       templateUrl: 'partials/dashboard.html',
       controller: 'DashboardCtrl'
-    });
+    })
+
+    .state('auth.edit-profile', {
+      url: '/edit-profile',
+      templateUrl: 'partials/edit-profile.html',
+      controller: 'EditProfileCtrl'
+    })
+
+    .state('auth.edit-services', {
+      url: '/edit-services',
+      templateUrl: 'partials/edit-services.html',
+      controller: 'EditServicesCtrl'
+    })
+
+    .state('auth.search', {
+      url: '/search',
+      templateUrl: 'partials/search.html',
+      controller: 'SearchCtrl'
+    })
+
+    .state('auth.chat', {
+      url: '/chat',
+      templateUrl: 'partials/chat.html',
+      controller: 'ChatCtrl'
+    })
+
+    .state('auth.profile', {
+      url: '/profile',
+      templateUrl: 'partials/profile.html',
+      controller: 'ProfileCtrl'
+    })
 
   $urlRouterProvider.otherwise('/login');
 })

@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+    	<h1> Edit Services </h1>
+      	
+      	<form>
+      		<div ng-show='error' class="alert alert-warning" role="alert">{{error}}</div>
+    		<af form-fields="newServiceFields" ng-model="newServiceData"></af>
+    		<input class="btn btn-success" type='submit' value='Add Service' ng-click="addService();"></input>
+    	</form>
+
+    	<div class="spacer"></div>
+
+    	<div class="panel panel-default" ng-repeat="service in user.services">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">{{service.name}} - <em>{{service.level}}</em></h3>
+		  </div>
+		  <div class="panel-body">
+		    {{service.description}}
+		  </div>
+		</div>
+
+    </div>
+  </div>
+
+</div>

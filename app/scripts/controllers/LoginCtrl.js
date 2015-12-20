@@ -44,7 +44,7 @@ app.controller('LoginCtrl', function ($scope, $rootScope, AuthService, $state, $
         }).then(function(userData) {
 
           $rootScope.currentUser = UserService.createUser(userData.uid);
-          $rootScope.currentUser.email = $scope.user.email;
+          $rootScope.currentUser.profile.email = $scope.user.email;
           $rootScope.currentUser.$save();
 
           return AuthService.$authWithPassword({

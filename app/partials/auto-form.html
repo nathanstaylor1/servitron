@@ -1,0 +1,26 @@
+
+<div class="form-group" ng-repeat="field in formFields | orderBy:'order'">
+	<label> 
+		{{field.label}}
+	</label>
+	
+	<!-- Normal Inputs -->
+	<input ng-if="['text','email','date'].indexOf(field.type) > -1" 
+	class="form-control" type='{{field.type}}' ng-model='bindTo[field.name]'>
+	</input>
+
+	<!-- Radio -->
+	<div ng-if="['radio'].indexOf(field.type) > -1">
+		<label class="radio-inline" ng-repeat="option in field.options">
+		  <input type="{{field.type}}" name="{{field.name}}" value="{{option}}" ng-model='bindTo[field.name]'> {{option}}
+		</label>
+	</div>
+
+	<!-- Select -->
+	<select ng-if="['select'].indexOf(field.type) > -1" class="form-control" ng-model='bindTo[field.name]'>
+		<option ng-repeat="option in field.options">{{option}}</option>
+	</select>
+
+	<!-- TextArea -->
+	<textarea ng-if="['textarea'].indexOf(field.type) > -1" class="form-control" rows="5" ng-model='bindTo[field.name]'></textarea>
+</div>
