@@ -4,8 +4,8 @@ var app = angular.module('servitron', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngS
 
 app.constant('firebaseRef', 'https://servitron-dev.firebaseio.com');
 
-app.factory("AuthService", ["$firebaseAuth", "firebaseRef",
-  function($firebaseAuth, firebaseRef) {
+app.factory("AuthService", ["$firebaseAuth", "firebaseRef", "$rootScope",
+  function($firebaseAuth, firebaseRef, $rootScope) {
     var ref = new Firebase(firebaseRef);
     return $firebaseAuth(ref);
   }

@@ -10,6 +10,9 @@ body > div {
 
 a {
 	cursor: pointer;
+	&:hover{
+		color: #777;
+	}
 }
 
 .spacer{

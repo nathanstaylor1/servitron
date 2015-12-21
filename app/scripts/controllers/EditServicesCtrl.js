@@ -1,12 +1,12 @@
 'use strict';
 
-app.controller('EditServicesCtrl', function ($scope, UserService, ServiceService) {
+app.controller('EditServicesCtrl', function ($scope, UserService, ServiceService, $rootScope) {
 
 	$scope.init = function(){
 
 		$scope.newServiceData = {};
 
-		UserService.bindUserTo($scope, 'user');
+		ServiceService.bindUserServicesTo($scope, 'services');
 
 	}
 
@@ -20,15 +20,17 @@ app.controller('EditServicesCtrl', function ($scope, UserService, ServiceService
         $scope.error = 'Enter a Description';
       }else{
 
-      	//create a service in the db
+      	ServiceService.addService($scope.newServiceData);
 
-      		//gen a key for it
-
-      	ServiceService.createService($scope.newServiceData.name)
-      	$scope.user.services[$scope.newServiceData.name] = $scope.newServiceData;
+      	$scope.services[$scope.newServiceData.name] = $scope.newServiceData;
+      	$scope.newServiceData = {};
 
       }
 
+	}
+
+	$scope.removeService = function(service){
+		ServiceService.removeUserService(service.name);
 	}
 
 	$scope.init();
