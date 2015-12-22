@@ -67,7 +67,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     })
 
     .state('auth.chat', {
-      url: '/chat',
+      url: '/chat/:uid',
       templateUrl: 'partials/chat.html',
       controller: 'ChatCtrl'
     })

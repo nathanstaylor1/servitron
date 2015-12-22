@@ -1,8 +1,50 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-    	<h1> Chat </h1>
+    	<h1> Chat <span ng-if="otherUser">with {{otherUser.profile.firstName}}</span></h1>
       
+    	<div class="row">
+
+    		<div class="col-sm-3">
+
+	      		<div class="panel panel-default" ng-repeat="chat in chatList | orderBy : lastMessage.time">
+	      			<a ui-sref="auth.chat({uid: chat.userId })">
+		    		  <div class="panel-body">
+		    		    {{chat.userName}}
+		    		  </div>
+		    		</a>
+	    		</div>
+
+    		</div>
+
+    		<div class="col-sm-9">
+
+				<div class="panel panel-default">
+					<div class="panel-body">
+				      <ul class="list-group">
+					    <li class="list-group-item" ng-repeat="message in convo.messages">
+					    	<strong ng-if="message.sentBy == otherUser.uid">{{otherUser.profile.firstName}}: </strong>
+					    	<strong ng-if="message.sentBy != otherUser.uid">Me: </strong>
+
+					    	{{message.content}}
+					    </li>
+					  </ul>
+					</div>
+
+				</div>
+				<form>
+					<div class="input-group">
+				      <input class="form-control" type="text" ng-model="messageContent"></input>
+				      <span class="input-group-btn">
+				       	<input class="btn btn-success" type="submit" value="Send" ng-click="sendMessage()">
+				      </span>
+				    </div>
+				</form>
+
+    		</div>
+
+    	</div>
+
 
     </div>
   </div>
