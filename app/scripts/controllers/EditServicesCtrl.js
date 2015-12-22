@@ -1,6 +1,6 @@
 'use strict';
 
-app.controller('EditServicesCtrl', function ($scope, UserService, ServiceService, $rootScope) {
+app.controller('EditServicesCtrl', function ($scope, UserService, ServiceService, $rootScope, configData) {
 
 	$scope.init = function(){
 
@@ -35,26 +35,6 @@ app.controller('EditServicesCtrl', function ($scope, UserService, ServiceService
 
 	$scope.init();
 
-	$scope.newServiceFields = [
-		{
-			name: 'name',
-			type: 'text',
-			label: 'Service',
-			order: 1
-		},		
-		{
-			name: 'level',
-			type: 'radio',
-			label: 'Level',
-			options: ["Begginer", "Intermediate", "Advanced"],
-			order: 2
-		},	
-		{
-			name: 'description',
-			type: 'textarea',
-			label: 'Description',
-			order: 3
-		},		
-	]
+	$scope.newServiceFields = configData.serviceFields
 
 });

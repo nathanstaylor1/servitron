@@ -73,7 +73,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     })
 
     .state('auth.profile', {
-      url: '/profile',
+      url: '/profile/:uid',
       templateUrl: 'partials/profile.html',
       controller: 'ProfileCtrl'
     })

@@ -5,10 +5,15 @@ app.service("UserService", function($firebaseObject, $firebaseArray, firebaseRef
   	var ref = new Firebase(firebaseRef).child('users').child(userId);
   	return $firebaseObject(ref);
   }
-  this.bindUserTo = function($scope, location){
+  this.bindAuthUserTo = function($scope, location){
   	var ref = new Firebase(firebaseRef).child('users').child(AuthService.$getAuth().auth.uid);
   	var syncObject = $firebaseObject(ref);
   	return syncObject.$bindTo($scope, location);
+  }
+  this.bindUserTo = function($scope, location, uid){
+    var ref = new Firebase(firebaseRef).child('users').child(uid);
+    var syncObject = $firebaseObject(ref);
+    return syncObject.$bindTo($scope, location);
   }
   this.bindAllUsersTo = function($scope, location){
   	var ref = new Firebase(firebaseRef).child('users');

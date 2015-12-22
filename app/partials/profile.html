@@ -1,8 +1,32 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
-    	<h1> Profile </h1>
-      
+    <div class="col-md-9" ng-if="user != null">
+    	<h1 > {{user.profile.firstName}}'s Profile </h1>
+
+    	<a ng-if="user.uid != authUid" ui-sref="chat({uid: user.uid })"> Chat with {{user.profile.firstName}}</a>
+
+    	<div class="spacer"></div>
+    	
+      	
+      	<div ng-repeat="field in profileFields" ng-if="field.public">
+      		<span>
+      			<strong>{{field.label}}</strong> 
+      			{{user.profile[field.name]}}
+      	</div>
+
+      	<h4> Services </h4>
+
+      	<div class="panel panel-default" ng-repeat="service in user.services">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">
+		    	{{service.name}} - <em>{{service.level}}</em> 
+		    </h3>
+
+		  </div>
+		  <div class="panel-body">
+		    {{service.description}}
+		  </div>
+		</div>
 
     </div>
   </div>

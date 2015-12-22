@@ -17,7 +17,7 @@
 	    </div>
 
 	    <div class="spacer"></div>
-	    
+
       	<div class="panel panel-default" ng-repeat="user in users">
 		  <div class="panel-heading">
 		    <h3 class="panel-title">
@@ -26,6 +26,7 @@
 		    </h3>
 		  </div>
 		  <div class="panel-body">
+		  	<a ui-sref="auth.profile({ uid: user.uid })"> View Profile </a>
 		    <h4>Services</h4>
 		    <ul>
 		    	<li ng-repeat="service in user.services">

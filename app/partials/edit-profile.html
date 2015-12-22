@@ -1,8 +1,12 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-    	<h1> Edit Profile </h1>
-    
+
+		<h1> Edit Profile </h1>
+		<a ui-sref="auth.profile({ uid: user.uid })">View my Profile</a>
+
+    	<div class="spacer"></div>
+
         <form>
             <af form-fields="profileFields" ng-model="user.profile"></af>
         </form>
